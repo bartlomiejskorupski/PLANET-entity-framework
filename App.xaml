@@ -1,0 +1,8 @@
+﻿<Application x:Class="EntityFramework.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EntityFramework">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

@@ -1,0 +1,121 @@
+﻿<Window x:Class="EntityFramework.Views.OrderForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EntityFramework.Views"
+        mc:Ignorable="d"
+        Title="Create New Order" Height="450" Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Order"
+               FontSize="22"/>
+
+        <ListView Grid.Row="1"
+                  Margin="10, 5"
+                  ItemsSource="{Binding OrderItems}"
+                  SelectedItem="{Binding SelectedOrderItem}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn 
+                        Header="Name"
+                        Width="200"
+                        DisplayMemberBinding="{Binding Path=Item.Name}"/>
+                    <GridViewColumn 
+                        Header="Amount"
+                        DisplayMemberBinding="{Binding Amount}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Content="Remove item"
+                Grid.Row="2"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Margin="10, 5"
+                Command="{Binding RemoveOrderItemCommand}"/>
+
+        <Label Grid.Column="1"
+               Content="Items in stock"
+               FontSize="22"/>
+
+        <ListView Grid.Row="1"
+                  Grid.Column="1"
+                  Margin="10, 5"
+                  SelectedItem="{Binding SelectedItem}"
+                  ItemsSource="{Binding Items}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn 
+                        Header="Name"
+                        DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn 
+                        Header="Price"
+                        DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn 
+                        Header="Stock"
+                        DisplayMemberBinding="{Binding Stock}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel 
+            Orientation="Horizontal"
+            Grid.Row="2"
+            Grid.Column="1">
+            <Label Content="Amount"/>
+            <TextBox Width="100"
+                     VerticalAlignment="Top"
+                     Margin="10, 5"
+                     Text="{Binding AmountText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Width="100" 
+                    Content="Add to order"
+                    VerticalAlignment="Top"
+                    Margin="0 , 5"
+                    Command="{Binding AddToOrderCommand}"/>
+        </StackPanel>
+
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="3">
+            <Label Content="Ip address"
+                   VerticalAlignment="Center"/>
+            <Label Content="{Binding IpAddress}"
+                     Width="120"
+                     VerticalAlignment="Center"
+                     Margin="10, 0"/>
+            <CheckBox IsChecked="{Binding IsEOrder}"
+                      IsEnabled="{Binding IsEClient}"
+                      VerticalAlignment="Center"
+                      Margin="10, 0"/>
+        </StackPanel>
+        
+        <StackPanel
+            Orientation="Horizontal"
+            FlowDirection="RightToLeft"
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="5">
+            <Button 
+                Content="Ok"
+                Margin="10, 0, 10, 0"
+                Padding="10, 5"
+                Command="{Binding OkCommand}"/>
+            <Button 
+                Content="Cancel"
+                Padding="10, 5"
+                Command="{Binding CancelCommand}"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
